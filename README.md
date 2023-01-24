@@ -1,27 +1,57 @@
-# AngularMaterialCrud
+# AngularMaterialCRUD
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+In diesem Repository sollen die vollen Fähigkeiten des Backends ausgeschöpft werden. Beim Request-Assignment wurden nur die bestehenden Patienten gelesen und in einer Liste - ohne Angular Material - angezeigt. 
 
-## Development server
+## Anforderungen an das Frontend
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Im Frontend ist bereits eine `package.json` mit Angular Material vorkonfiguriert. Erstelle mittels eines Schematic eine AddressForm und erweitere diese um alle Felder um einen Patient (mit mehreren Namen, Anschriften, etc. ) hinzuzufügen. 
 
-## Code scaffolding
+> Befehl zum generieren der Schematic
+`ng generate @angular/material:address-form <component-name>`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Zum Anzeigen bestehender Patienten kannst du den Quellcode aus dem AngularRequestAssignment teilweise wiederverwenden. Diese Liste soll als Tabelle angezeigt werden. Dafür gibt es ebenfalls eine Schematic. 
 
-## Build
+> Befehl zum generieren der Schematic
+`ng generate @angular/material:table <component-name>`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Nachdem im Backend folgendes möglich ist (bzw. sein sollte)
+- Alle Patienten abfragen
+- Patient  mit bestimmter ID abfragen
+- Patient hinzufügen
+- Patient ändern
+- Patient löschen
 
-## Running unit tests
+sind diese Funktionen im Frontend zu implementieren:
+- Alle Patienten anzeigen (je Patient ein Bearbeiten & Löschen-Button)
+- Detailansicht eines Patienten die ID wird aus der URL ausgelesen
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Anforderungen an das Backend
 
-## Further help
+Damit die Anwendung unabhängig von der lokalen Umgebung (also XAMPP) ausführbar ist, ist die Datenbank in einer von beiden Varianten bereitzustellen:
+- Als Docker-Container
+- Die H2-Datenbank verwenden (oder eine andere In-Memory Datenbank)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Abgaberichtlinien
+Gib in einem Unterordner deinen Server dazu, mit `mvn spring-boot:run` werde ich diesen dann ausführen um das Frontend zu unterstützen. Achte darauf dass die `.gitignore`-Datei angewandt wird um die Repository-Größe möglichst gering zu halten. 
+
+Das Frontend werde ich mit `ng serve` starten. Auch hier bitte darauf achten dass `node_modules`, `.angular` etc. nicht commited werden. 
+
+### Bewertungsgrundlagen
+
+- Backend ausführbar 10P
+- Frontend ausführbar 10P
+- Patientenliste wird angezeigt 20P
+- Patient kann bearbeitet werden 20P
+- Patient kann gelöscht werden 20P
+- Einzelner Patient wird angezeigt 20P
+
+
+### Tutorials zum Nachlesen
+
+> [Routing](https://angular.io/guide/routing-overview)
+
+> [Schematics](https://v7.material.angular.io/guide/schematics)
+
+> [HTTP](https://angular.io/guide/http)

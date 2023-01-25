@@ -4,14 +4,20 @@ In diesem Repository sollen die vollen Fähigkeiten des Backends ausgeschöpft w
 
 ## Anforderungen an das Frontend
 
-Im Frontend ist bereits eine `package.json` mit Angular Material vorkonfiguriert. Erstelle mittels eines Schematic eine AddressForm und erweitere diese um alle Felder um einen Patient (mit mehreren Namen, Anschriften, etc. ) hinzuzufügen. 
+Im Frontend ist bereits eine `package.json` mit Angular Material vorkonfiguriert. Erstelle mittels eines Schematic zunächst eine Navigation. Darin dann eine AddressForm und erweitere diese um alle Felder um einen Patient (mit mehreren Namen, Anschriften, etc. ) hinzuzufügen. 
 
-> Befehl zum generieren der Schematic
+> Befehl zum generieren der Navigation Schematic
+
+`ng generate @angular/material:navigation <component-name>`
+
+> Befehl zum generieren der Address-Form Schematic
+
 `ng generate @angular/material:address-form <component-name>`
 
 Zum Anzeigen bestehender Patienten kannst du den Quellcode aus dem AngularRequestAssignment teilweise wiederverwenden. Diese Liste soll als Tabelle angezeigt werden. Dafür gibt es ebenfalls eine Schematic. 
 
-> Befehl zum generieren der Schematic
+> Befehl zum generieren der Table Schematic
+
 `ng generate @angular/material:table <component-name>`
 
 Nachdem im Backend folgendes möglich ist (bzw. sein sollte)
@@ -23,7 +29,10 @@ Nachdem im Backend folgendes möglich ist (bzw. sein sollte)
 
 sind diese Funktionen im Frontend zu implementieren:
 - Alle Patienten anzeigen (je Patient ein Bearbeiten & Löschen-Button)
+    - Klickt man auf einen Patienten kommt man via einem RouterLink in die Detailansicht
 - Detailansicht eines Patienten die ID wird aus der URL ausgelesen
+    - Dort sollen die Daten als reiner Text (in divs oder spans) angezeigt werden
+    - Mit Klick auf einen bearbeiten-Button soll die Komponente ausgetauscht werden gegen ein Formular welches alle Felder bearbeitbar macht
 
 
 
@@ -32,6 +41,9 @@ sind diese Funktionen im Frontend zu implementieren:
 Damit die Anwendung unabhängig von der lokalen Umgebung (also XAMPP) ausführbar ist, ist die Datenbank in einer von beiden Varianten bereitzustellen:
 - Als Docker-Container
 - Die H2-Datenbank verwenden (oder eine andere In-Memory Datenbank)
+
+Der Server ist im Backend einzufügen. Entweder das komplette Maven-Projekt oder nur die Jar-Datei. 
+
 
 ## Abgaberichtlinien
 Gib in einem Unterordner deinen Server dazu, mit `mvn spring-boot:run` werde ich diesen dann ausführen um das Frontend zu unterstützen. Achte darauf dass die `.gitignore`-Datei angewandt wird um die Repository-Größe möglichst gering zu halten. 

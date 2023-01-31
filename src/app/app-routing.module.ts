@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PatientFormComponent } from './patient-form/patient-form.component';
 import { PatientTableComponent } from './patient-table/patient-table.component';
 
 const routes: Routes = [
-  {component: PatientTableComponent, path: "patient/:id"}
+  {component: PatientTableComponent, path: "patienttable"},
+  {component: PatientFormComponent, path: "patient/:id"}
 ];
 
 @NgModule({

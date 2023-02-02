@@ -16,7 +16,7 @@ export class PatientFormComponent implements AfterViewInit {
   patientForm = this.fb.group({
     id: [new FormControl(""), Validators.required],
     text: new FormControl(""),
-    identifier: new FormArray([]),
+    //identifier: new FormArray([]),
     address: [new FormArray( [ new FormGroup({
       id: new FormControl<string | null>(""),
       use: new FormControl<string | null>(""),
@@ -120,6 +120,7 @@ export class PatientFormComponent implements AfterViewInit {
         
 
         this.currentPatient = patient;
+        this.patientForm.patchValue(this.currentPatient);
       });
 
     });

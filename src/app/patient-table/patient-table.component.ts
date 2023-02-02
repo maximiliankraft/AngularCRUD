@@ -18,7 +18,7 @@ export class PatientTableComponent implements AfterViewInit {
   dataSource: PatientTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name', 'edit'];
 
   constructor(private patientService: PatientService) {
     this.dataSource = new PatientTableDataSource();

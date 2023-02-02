@@ -57,7 +57,7 @@
 
     export interface Patient {
         id: string;
-        text?: any;
+        text?: string;
         identifier: Identifier[];
         active: boolean;
         name: Name[];

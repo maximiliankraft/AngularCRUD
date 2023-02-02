@@ -7,6 +7,11 @@ import { Patient } from './model/Patient';
 })
 export class PatientService {
 
+
+  getPatientById(patientId: string) {
+    return this.http.get<Patient>("http://localhost:8080/api/patient/"+patientId);
+  }
+
   constructor(private http: HttpClient) { }
 
   getAllPatients(){

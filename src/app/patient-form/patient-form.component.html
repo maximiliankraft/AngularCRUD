@@ -18,15 +18,38 @@
         <div class="col">
           <mat-form-field class="example-full-width">
             <mat-label>Id</mat-label>
-            <input matInput [formControl]="patientForm.controls.id" placeholder="Id" >
+            <input type="id"
+             matInput formControlName='id' placeholder="Id" >
           </mat-form-field>
+
         </div>
-        
 
       </div>
     </mat-card-content>
 
     
+
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Address</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngFor="let address of patientForm.controls.address.value">
+        <div class="row" [formGroup]="address" >
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <mat-label>City</mat-label>
+              <input type="text"
+               matInput formControlName='city' placeholder="City" >
+            </mat-form-field>
+  
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
 
   </mat-card>
 

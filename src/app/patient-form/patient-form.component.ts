@@ -18,7 +18,7 @@ export class PatientFormComponent implements AfterViewInit {
     text: new FormControl(""),
     identifier: new FormArray([]),
     address: [new FormArray( [ new FormGroup({
-      id: new FormControl<string>(""),
+      id: new FormControl<string | null>(""),
       use: new FormControl<string | null>(""),
       type: new FormControl<string>(""),
       text: new FormControl<string | null>(""),

@@ -36,9 +36,9 @@
       <mat-card-title>Address</mat-card-title>
     </mat-card-header>
 
-    <mat-card-content>
-      <div *ngFor="let address of patientForm.controls.address.value">
-        <div class="row" [formGroup]="address" >
+    <mat-card-content >
+      <div *ngFor="let addr of patientForm.controls.address.controls" >
+        <div class="row" [formGroup]="addr" >
           <div class="col">
             <mat-form-field class="example-full-width">
               <mat-label>City</mat-label>

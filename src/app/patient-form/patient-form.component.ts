@@ -13,36 +13,26 @@ export class PatientFormComponent implements AfterViewInit {
 
   public currentPatient?: Patient;
 
-  patientForm = this.fb.group({
-    id: [new FormControl(""), Validators.required],
-    text: new FormControl(""),
-    //identifier: new FormArray([]),
-    address: [new FormArray( [ new FormGroup({
-      id: new FormControl<string | null>(""),
-      use: new FormControl<string | null>(""),
-      type: new FormControl<string>(""),
-      text: new FormControl<string | null>(""),
-      line: new FormArray([ new FormControl("") ]),
-      city: new FormControl(""),
-      district: new FormControl(""),
-      state: new FormControl(""),
-      postalcode: new FormControl(""),
-      country: new FormControl(""),
-      period: new FormGroup({
-        id: new FormControl(""),
-        start: new FormControl(new Date()),
-        end: new FormControl(new Date())
-      })
-    }) ]), Validators.required],
-    address2: null,
-    city: [null, Validators.required],
-    state: [null, Validators.required],
-    postalCode: [null, Validators.compose([
-      Validators.required, Validators.minLength(5), Validators.maxLength(5)])
-    ],
-    shipping: ['free', Validators.required]
+  patientForm = new FormGroup({
+    id: new FormControl(''),
+    //identifier: new FormArray([]) ,
+    //name: new FormArray([this.createHumanNameFormGroup(1,1,1)]), // todo create name formgroup
+    text: new FormControl(''),
+    active: new FormControl(true),
+    //gender: new FormControl<Gender>("unknown"),
+    birthDate: new FormControl(''),
+    //telecom: new FormArray([this.createTelecomFormGroup()]),
+    deceasedBoolean: new FormControl(false),
+    deceasedDateTime: new FormControl(null as Date | null),
+    address: new FormArray([this.createAddressFormGroup()]),
   });
 
+  createAddressFormGroup() {
+    return new FormGroup({
+      city: new FormControl(''),
+      postalcode: new FormControl(''),
+    });
+  }
   hasUnitNumber = false;
 
   states = [

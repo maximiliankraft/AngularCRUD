@@ -55,6 +55,8 @@ export interface Address {
     period: Period2;
 }
 
+export const GENDER_OPTIONS = ["male" , "female" , "other" , "unknown"];
+
 export interface Patient {
     id: string;
     text?: string;
@@ -62,7 +64,7 @@ export interface Patient {
     active: boolean;
     name: HumanName[];
     telecom: Telecom[];
-    gender: string;
+    gender: "male" | "female" | "other" | "unknown";
     birthDate?: Date;
     deceasedBoolean: boolean;
     deceasedDateTime?: Date;

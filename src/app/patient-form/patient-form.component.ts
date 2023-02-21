@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PatientService } from '../patient.service';
+import {GENDER_OPTIONS} from "../model/Patient";
 
 @Component({
   selector: 'app-patient-form',
@@ -9,6 +10,9 @@ import { PatientService } from '../patient.service';
   styleUrls: ['./patient-form.component.css']
 })
 export class PatientFormComponent implements AfterViewInit {
+
+
+
   patientForm = this.fb.group({
     id: "",
     text: ["", Validators.required],
@@ -16,8 +20,8 @@ export class PatientFormComponent implements AfterViewInit {
       this.createIdentifierFormGroup(1)
     ),
     active: [true, Validators.required],
+    gender: ["", Validators.required],
     address: [null, Validators.required],
-    city: [null, Validators.required],
     state: [null, Validators.required],
     postalCode: [null, Validators.compose([
       Validators.required, Validators.minLength(5), Validators.maxLength(5)])
@@ -26,6 +30,7 @@ export class PatientFormComponent implements AfterViewInit {
   });
 
   hasUnitNumber = false;
+  genderOptions: any = GENDER_OPTIONS;
 
   public createIdentifierFormGroup( formGroupAmount: number = 1 ): FormGroup[]{
 
@@ -36,8 +41,8 @@ export class PatientFormComponent implements AfterViewInit {
       system: new FormControl(""),
       value: new FormControl(""),
       period: new FormGroup({
-        start: new FormControl(new Date()),
-        end: new FormControl(new Date())
+        start: new FormControl<Date>(new Date()),
+        end: new FormControl<Date>(new Date())
       }),
       assigner: new FormControl(""),
     }));

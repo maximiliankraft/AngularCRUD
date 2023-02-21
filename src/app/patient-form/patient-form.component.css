@@ -2,9 +2,10 @@
   width: 100%;
 }
 
-.shipping-card {
+.form-card {
   min-width: 120px;
   margin: 20px auto;
+  color: white;
 }
 
 .mat-radio-button {

@@ -15,8 +15,8 @@ export class PatientFormComponent implements AfterViewInit {
     identifier: new FormArray( // identifier list
       this.createIdentifierFormGroup(1)
     ),
+    active: [true, Validators.required],
     address: [null, Validators.required],
-    address2: null,
     city: [null, Validators.required],
     state: [null, Validators.required],
     postalCode: [null, Validators.compose([

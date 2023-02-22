@@ -31,6 +31,7 @@ export class PatientFormComponent implements AfterViewInit {
     return new FormGroup({
       city: new FormControl(''),
       postalcode: new FormControl(''),
+      line: new FormArray([new FormControl("")])
     });
   }
   hasUnitNumber = false;
@@ -49,7 +50,7 @@ export class PatientFormComponent implements AfterViewInit {
 
 
         this.currentPatient = patient;
-        this.patientForm.patchValue(this.currentPatient);
+        this.patientForm.patchValue(this.currentPatient as any);
       });
 
     });
@@ -57,5 +58,16 @@ export class PatientFormComponent implements AfterViewInit {
 
   onSubmit(): void {
     alert('Thanks!');
+  }
+
+
+
+
+  addString(addr: FormGroup<{ city: FormControl<string | null>; postalcode: FormControl<string | null>; line: FormArray<any> }>) {
+    addr.controls.line.push(new FormControl(""));
+  }
+
+  removeString(addr: FormGroup<{ city: FormControl<string | null>; postalcode: FormControl<string | null>; line: FormArray<FormControl<string | null>> }>, index: number) {
+    addr.controls.line.removeAt(index);
   }
 }

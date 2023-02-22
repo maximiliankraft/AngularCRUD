@@ -48,6 +48,16 @@
 
           </div>
         </div>
+
+        <div  >
+          <div *ngFor="let string of addr.controls.line.controls; index as i">
+            <mat-form-field class="example-full-width">
+            <input matInput type="text" [formControl]="string" [value]="string.value">
+            </mat-form-field>
+            <button (click)="removeString(addr, i)">Remove</button>
+          </div>
+        <button (click)="addString(addr)">Add String</button>
+      </div>
       </div>
     </mat-card-content>
 

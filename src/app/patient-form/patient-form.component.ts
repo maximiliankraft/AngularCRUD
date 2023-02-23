@@ -27,11 +27,18 @@ export class PatientFormComponent implements AfterViewInit {
     address: new FormArray([this.createAddressFormGroup()]),
   });
 
-  createAddressFormGroup() {
+  createAddressFormGroup(lineAmount: number = 1) {
+
+    const formControlArr = [];
+
+    for (let i = 0; i < lineAmount; i++){
+      formControlArr.push(new FormControl(""));
+    }
+
     return new FormGroup({
       city: new FormControl(''),
       postalcode: new FormControl(''),
-      line: new FormArray([new FormControl("")])
+      line: new FormArray(formControlArr)
     });
   }
   hasUnitNumber = false;
@@ -48,18 +55,26 @@ export class PatientFormComponent implements AfterViewInit {
 
         console.log(patient);
 
+        console.log(patient)
+
+
+
 
         this.currentPatient = patient;
+
+
+        // liste von adress controls leeren
+        this.patientForm.controls.address.clear()
+
+        for (let i = 0; i < patient.address.length; i++){
+          this.patientForm.controls.address.push(this.createAddressFormGroup(patient.address[i].line.length));
+        }
+
         this.patientForm.patchValue(this.currentPatient as any);
       });
 
     });
   }
-
-  onSubmit(): void {
-    alert('Thanks!');
-  }
-
 
 
 

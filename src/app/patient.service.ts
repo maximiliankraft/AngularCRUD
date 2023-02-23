@@ -8,11 +8,11 @@ import { Patient } from './model/Patient';
 export class PatientService {
 
 
+  constructor(private http: HttpClient) { }
+
   getPatientById(patientId: string) {
     return this.http.get<Patient>("http://localhost:8080/api/patient/"+patientId);
   }
-
-  constructor(private http: HttpClient) { }
 
   getAllPatients(){
     return this.http.get<Patient[]>("http://localhost:8080/api/patient/");

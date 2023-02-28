@@ -8,6 +8,10 @@
   color: white;
 }
 
+.card-actions{
+  background: #ABABAB;
+}
+
 .mat-radio-button {
   display: block;
   margin: 5px 0;

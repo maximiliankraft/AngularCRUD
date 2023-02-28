@@ -19,9 +19,7 @@ export class PatientFormComponent implements AfterViewInit {
     identifier: new FormArray( // identifier list
       this.createIdentifierFormGroup(1)
     ),
-    telecom: new FormGroup({
-      use: new FormControl("")
-    }),
+    telecom: new FormArray([this.createTelecomFormGroup()]),
     active: [true, Validators.required],
     gender: ["", Validators.required],
     address: [null, Validators.required],
@@ -53,16 +51,34 @@ export class PatientFormComponent implements AfterViewInit {
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private patientService: PatientService) {}
 
-
+  private createTelecomFormGroup() {
+    return new FormGroup({
+      id: new FormControl(''),
+      system: new FormControl(''),
+      value: new FormControl(''),
+      use: new FormControl(''),
+      rank: new FormControl(0),
+      period: new FormGroup({
+        start: new FormControl<Date>( new Date()),
+        end: new FormControl<Date>( new Date())
+      })
+    });
+  }
 
   ngAfterViewInit(): void {
     this.route.params.subscribe((params: Params) => {
       const patientId =  params['id'];
 
       this.patientService.getPatientById(patientId).subscribe(patient => {
-        console.log("Incoming patient data");
-        console.log(patient);
 
+        const telecomAmount = patient.telecom.length;
+        const telecomFormGroupArr = [];
+
+        for (let i = 0; i < telecomAmount; i++) {
+          telecomFormGroupArr.push(this.createTelecomFormGroup());
+        }
+
+        this.patientForm.controls.telecom = new FormArray(telecomFormGroupArr);
 
         this.patientForm.patchValue(patient as any);
 
@@ -72,7 +88,13 @@ export class PatientFormComponent implements AfterViewInit {
   }
 
   
-  public removeTelecom(index: number){}
+  public removeTelecom(index: number){
+    this.patientForm.controls.telecom.removeAt(index);
+  }
+
+  public addTelecom(){
+    this.patientForm.controls.telecom.push(this.createTelecomFormGroup());
+  }
 
   onSubmit(): void {
     alert('Thanks!');

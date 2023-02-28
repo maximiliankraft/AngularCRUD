@@ -19,6 +19,9 @@ export class PatientFormComponent implements AfterViewInit {
     identifier: new FormArray( // identifier list
       this.createIdentifierFormGroup(1)
     ),
+    telecom: new FormGroup({
+      use: new FormControl("")
+    }),
     active: [true, Validators.required],
     gender: ["", Validators.required],
     address: [null, Validators.required],
@@ -67,6 +70,9 @@ export class PatientFormComponent implements AfterViewInit {
       });
     });
   }
+
+  
+  public removeTelecom(index: number){}
 
   onSubmit(): void {
     alert('Thanks!');

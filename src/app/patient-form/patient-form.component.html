@@ -56,6 +56,66 @@
         </div>
       </span>
 
+      <div *ngFor="let telecom of patientForm.controls.telecom.controls; let i = index;" [formGroup]="telecom">
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Value" formControlName="value"> <!-- patientForm.controls.telecom.controls.value -->
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>System</mat-label>
+              <input matInput placeholder="system" formControlName="system">
+            </mat-form-field>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>use</mat-label>
+              <input matInput placeholder="use" formControlName="use">
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>use</mat-label>
+              <input matInput placeholder="Rank" formControlName="rank">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row" [formGroup]="telecom.controls.period">
+
+          <mat-form-field class="col" appearance="fill">
+            <mat-label>Start</mat-label>
+            <input matInput formControlName="start" [matDatepicker]="telperstart">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="telperstart"></mat-datepicker-toggle>
+            <mat-datepicker #telperstart></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="col" appearance="fill">
+            <mat-label>End</mat-label>
+            <input matInput formControlName="end" [matDatepicker]="telperend">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="telperend"></mat-datepicker-toggle>
+            <mat-datepicker #telperend></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <div class="col" class="min-width">
+            <button mat-raised-button (click)="removeTelecom(i)">Remove</button>
+          </div>
+        </div>
+        <hr/>
+      </div>
+
 
 
     </mat-card-content>
